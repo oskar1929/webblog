@@ -26,42 +26,43 @@
         <div class="menu-section">
             <table>
                 <tr>    
-                    <td class="sub-nav">
+                    <td class="main-nav">
                         <!-- Sub nav -->
-                        <div id="id-s1-nav">
+                        <div>
                             <nav>
-                                <a class="bold-text" href="/">Übersicht</a> 
-                                <br> 
+                                <a class="bold-text" href="/">graintopixel.de</a><br> 
                                 <br>   
-                                <a href="/category/stories">Stories</a>
-                                <br>
+                                
+                                <a href="/category/stories">Stories</a><br>
+                                
                                 {% for category in categories %}
-                                <a href="/category/{{category.title}}">{{category.title}}</a>
-                                <br>
+                                <a href="/category/{{category.title}}">{{category.title}}</a><br>
                                 {% endfor %}
                                 <br>
+
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a><br>
+                                <br>
+
                                 <!-- Artikel nav -->
-                                {% for article in articles %}
-                                    {% if article.category.id == category.id%}
-                                    <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
-                                    {% endif %}
-                                {% endfor %}
-                                <br>
-                                <br>
-                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
-                            
+                                <div class="sub-nav-div">
+                                    <br>
+                                    {% for article in articles %}
+                                        {% if article.category.id == category.id%}
+                                        <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
                             </nav> 
                         </div>
                     </td> 
-
                 </tr>
             </table>   
         </div>
         <div class="content-section">
 
             <div class="content-intro">
-                <h4>{{story.title}}</h4><br>
-                <h4>{{article.title}}</h4><br>
+                <h2>{{article.title}}</h2><br>
                 <p>
                     {{article.intro_text}}
                 </p>   <br><br><br><br>

@@ -1,25 +1,39 @@
-var theme = "dark";
+var values_dark = [
+    '#121212', 
+    '#eaeaea', 
+    '#ffa42e',
+    '#eaeaea',
+    "Roboto Slab",
+    '400',
+    '1.5',
+    '1.4px',
+    'normal',
+];
 
-var c_background_dark = '#121212';
-var c_font_dark = '#eaeaea';
-var c_linksHover_dark = '#ffa42e';
-var c_decoration_dark = '#eaeaea';
-var font_dark = "Roboto Slab"
-var font_wheight_dark  = '400';
+var values_bright = [
+    '#F5F5DC',
+    '#2F4F4F',
+    '#8B0000',
+    '#8B4513',
+    "Roboto Mono",
+    '500',
+    '1.5',
+    '0.5px',
+    '-5.5px'
+];
 
-var c_background_bright = '#F5F5DC';
-var c_font_bright = '#2F4F4F';
-var c_linksHover_bright = '#8B0000';
-var c_decoration_bright = '#8B4513';
-var font_bright = "Roboto Mono"
-var font_wheight_bright = '500';
+var value_names = [
+    '--c-background',
+    '--c-font',
+    '--c-linksHover',
+    '--c-decoration',
+    '--font',
+    '--font-wheight',
+    '--line-height',
+    '--letter-spacing',
+    '--word-spacing',
+];
 
-var var_c_background = '--c-background';
-var var_c_font = '--c-font';
-var var_c_linksHover = '--c-linksHover';
-var var_c_decoration = '--c-decoration';
-var var_font = '--font';
-var var_font_wheight = '--font-wheight';
 
 
 
@@ -29,26 +43,25 @@ function setCSSVariable(variableName, value, element = document.documentElement)
 }
 
 function styleBright() {
-    setCSSVariable(var_c_background, c_background_bright);
-    setCSSVariable(var_c_font, c_font_bright);
-    setCSSVariable(var_c_linksHover, c_linksHover_bright);
-    setCSSVariable(var_c_decoration, c_decoration_bright);
-    setCSSVariable(var_font, font_bright);
-    setCSSVariable(var_font_wheight, font_wheight_bright);
-
-    theme = "bright";
+    if (value_names.length == values_bright.length) {
+        for(var i = 0; i<value_names.length; i++)  {
+            setCSSVariable(value_names[i], values_bright[i]);
+        }
+    } else {
+        console.log("EIne css refernez in einer der Arrays wurde vergessen in style.css")
+    }
 }
 
 function styleDark() {
-    setCSSVariable(var_c_background, c_background_dark);
-    setCSSVariable(var_c_font, c_font_dark);
-    setCSSVariable(var_c_linksHover, c_linksHover_dark);
-    setCSSVariable(var_c_decoration, c_decoration_dark);
-    setCSSVariable(var_font, font_dark);
-    setCSSVariable(var_font_dark, font_wheight_dark);
-
-    theme = "dark";
+    if (value_names.length == values_dark.length) {
+        for(var i = 0; i<value_names.length; i++)  {
+            setCSSVariable(value_names[i], values_dark[i]);
+        }
+    } else {
+        console.log("EIne css refernez in einer der Arrays wurde vergessen in style.css")
+    }
 }
+
 
 function applySavedCSSVariables(element = document.documentElement) {
     for (let i = 0; i < localStorage.length; i++) {

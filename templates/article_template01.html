@@ -32,31 +32,34 @@ TEMPLATE
         <div class="menu-section">
             <table>
                 <tr>    
-                    <td class="sub-nav">
+                    <td class="main-nav">
                         <!-- Sub nav -->
                         <div>
                             <nav>
-                                <a class="bold-text" href="/">Übersicht</a> 
-                                <br> 
+                                <a class="bold-text" href="/">graintopixel.de</a><br>
                                 <br>   
-                                <a href="/category/stories">Stories</a>
-                                <br>
+                               
+                                <a href="/category/stories">Stories</a><br>
+                                
                                 {% for category in categories %}
-                                <a href="/category/{{category.title}}">{{category.title}}</a>
-                                <br>
+                                <a href="/category/{{category.title}}">{{category.title}}</a><br>
                                 {% endfor %}
                                 <br>
-                                {% for chapter in story.chapters.all %}
-                                <a href="/story/{{story.id}}/article/{{chapter.id}}">{{chapter.title}}</a><br>
-                                {% endfor %}
+
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a><br>
                                 <br>
-                                <br>
-                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
+
+                                <!-- Chapter nav -->
+                                <div class="sub-nav-div">
+                                    <br>
+                                    {% for chapter in story.chapters.all %}
+                                    <a href="/story/{{story.id}}/article/{{chapter.id}}">{{chapter.title}}</a><br>
+                                    {% endfor %}
+                                </div>
                             
                             </nav> 
                         </div>
                     </td> 
-
                 </tr>
             </table>   
         </div>
@@ -91,7 +94,7 @@ TEMPLATE
                                 <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
                                 {% endif %}
                             {% endfor %}
-                            &nbsp;&nbsp; 
+                            <br> 
                             {% for link in linkers %}
                                 {% if link.film.id == image.film.id %}
                                 <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 

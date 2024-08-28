@@ -52,6 +52,7 @@ class Tag(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='media/', null=True)
+    image_cloud = models.CharField(max_length=50000, null=True, blank=True)
     title = models.CharField(max_length=5000)
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
     date_shot = models.DateTimeField(default=datetime.now, blank=True)

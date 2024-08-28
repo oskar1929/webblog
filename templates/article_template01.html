@@ -1,0 +1,111 @@
+{%load static%} 
+<!-- 
+TEMPLATE 
+    für Artikel einer Story
+    bekommt:
+    eine konkrete Story story
+    einen konkreten Artikel article
+  -->
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>Analogue Archive</title>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="menu-section">
+            <table>
+                <tr>    
+                    <td class="sub-nav">
+                        <!-- Sub nav -->
+                        <div>
+                            <nav>
+                                <a class="bold-text" href="/">Übersicht</a> 
+                                <br> 
+                                <br>   
+                                <a href="/category/stories">Stories</a>
+                                <br>
+                                {% for category in categories %}
+                                <a href="/category/{{category.title}}">{{category.title}}</a>
+                                <br>
+                                {% endfor %}
+                                <br>
+                                {% for chapter in story.chapters.all %}
+                                <a href="/story/{{story.id}}/article/{{chapter.id}}">{{chapter.title}}</a><br>
+                                {% endfor %}
+                                <br>
+                                <br>
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
+                            
+                            </nav> 
+                        </div>
+                    </td> 
+
+                </tr>
+            </table>   
+        </div>
+        <div class="content-section">
+
+            <div class="content-intro">
+                <h1>{{article.title}}</h1>
+                <h1 class="story-title">in {{story.title}}</h1>
+                <br>
+                <br>
+                <p>
+                    {{article.intro_text}}
+                </p>   <br><br><br><br>
+            </div>
+             
+            <!-- Bild 1 -->
+             {% for image in article.images.all %}
+            <div class ="image-text-bundle">
+                
+                <div class="image-section">
+                    <img class="image" src="{{image.image.url}}" alt="">
+                </div>
+
+                <div class ="text-section">
+                    <article>
+                        <p>
+                            <h4>{{image.title}}</h4>
+                            {{image.date_shot}}<br>   
+                            <br>
+                            {% for link in linkers %}
+                                {% if link.camera.id == image.camera.id %}
+                                <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
+                                {% endif %}
+                            {% endfor %}
+                            &nbsp;&nbsp; 
+                            {% for link in linkers %}
+                                {% if link.film.id == image.film.id %}
+                                <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </article>
+                    <a href="#" class="return-link">... zurück nach oben</a>
+                </div> 
+
+            </div> <!-- image-text-bundle -->  
+            {% endfor %}
+        </div> <!-- content-section -->            
+    </div> <!-- wrapper -->
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+{%load static%} 
+
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>Analogue Archive</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="menu-section">
+            <table>
+                <tr>
+                    <td class="main-nav">
+                        <!-- Main nav -->
+                        <div>
+                            <nav>
+                                <a class="bold-text" href="/">Übersicht</a> 
+                                <br> 
+                                <br>   
+                                <a href="category/stories">Stories</a>
+                                <br>
+                                {% for category in categories %}
+                                <a href="category/{{category.title}}">{{category.title}}</a>
+                                <br>
+                                {% endfor %}
+                                <br>
+                                <br>
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
+                            </nav> 
+                        </div>
+                    </td>          
+                </tr>
+            </table>   
+        </div>
+
+        <div class="content-preview-section">
+            <h2>Alle Artikel</h2>
+            <ul>
+                {% for article in articles %}
+                <li>
+                    {% if article.category.title %}
+                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.category.title}}: {{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                    {% else %}
+                        {% for story in stories %}
+                            {% for chapter in story.chapters.all %}
+                                {% if chapter.title and chapter.id == article.id %}
+                                    <a href="story/{{story.id}}/article/3">{{story.title}}: {{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}} </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <br>
+        </div> <!-- content-preview-section -->            
+    </div> <!-- wrapper -->
+</body>
+
+</html>

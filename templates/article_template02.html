@@ -1,0 +1,95 @@
+{%load static%} 
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>Analogue Archive</title>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="menu-section">
+            <table>
+                <tr>    
+                    <td class="sub-nav">
+                        <!-- Sub nav -->
+                        <div id="id-s1-nav">
+                            <nav>
+                                <a class="bold-text" href="/">Übersicht</a> 
+                                <br> 
+                                <br>   
+                                <a href="/category/stories">Stories</a>
+                                <br>
+                                {% for category in categories %}
+                                <a href="/category/{{category.title}}">{{category.title}}</a>
+                                <br>
+                                {% endfor %}
+                                <br>
+                                <!-- Artikel nav -->
+                                {% for article in articles %}
+                                    {% if article.category.id == category.id%}
+                                    <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
+                                    {% endif %}
+                                {% endfor %}
+                                <br>
+                                <br>
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
+                            
+                            </nav> 
+                        </div>
+                    </td> 
+
+                </tr>
+            </table>   
+        </div>
+        <div class="content-section">
+
+            <div class="content-intro">
+                <h4>{{story.title}}</h4><br>
+                <h4>{{article.title}}</h4><br>
+                <p>
+                    {{article.intro_text}}
+                </p>   <br><br><br><br>
+            </div>
+             
+            <!-- Bild 1 -->
+            <div class ="image-text-bundle">
+                     
+                <div class="image-section">
+                    <img class="image" src="images/Beitrag ÖF24 2/full-1.jpg" alt="">
+                </div>
+
+                <div class ="text-section">
+                    <article>
+                        <p>
+                            <h4></h4>
+                            15. Juli 2024<br>   
+                            <br>
+                            <br>
+                            Minolta Hi-Matic 7sII &nbsp;&nbsp; Kodak Gold 200
+                        </p>
+                    </article>
+                    <a href="#" class="return-link">... zurück nach oben</a>
+                </div> 
+
+            </div> <!-- image-text-bundle -->
+        </div> <!-- content-section -->            
+    </div> <!-- wrapper -->
+</body>
+
+</html>

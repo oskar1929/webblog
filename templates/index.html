@@ -50,16 +50,36 @@
 
         <div class="content-preview-section">
             <h2>Alle Artikel</h2>
-            <ul>
+            <!-- for mobile view -->
+            <ul class="content-list-mobile">
                 {% for article in articles %}
                 <li>
                     {% if article.category.title %}
-                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.category.title}}: {{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> hochgeladen am:{{article.updated_at|date:"d.m.Y"}}</a>
                     {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
-                                    <a href="story/{{story.id}}/article/3">{{story.title}}: {{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}} </a>
+                                    <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+            <!-- for desktop view -->
+            <ul class="content-list-desktop">
+                {% for article in articles %}
+                <li>
+                    {% if article.category.title %}
+                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | hochgeladen am:{{article.updated_at|date:"d.m.Y"}}</a>
+                    {% else %}
+                        {% for story in stories %}
+                            {% for chapter in story.chapters.all %}
+                                {% if chapter.title and chapter.id == article.id %}
+                                    <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | hochgeladen am: {{article.updated_at|date:"d.m.Y"}}</a>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}

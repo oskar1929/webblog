@@ -52,7 +52,6 @@ class Tag(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='media/', null=True)
-    image_cloud = models.CharField(max_length=50000, null=True, blank=True)
     title = models.CharField(max_length=5000)
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
     date_shot = models.DateTimeField(default=datetime.now, blank=True)
@@ -71,6 +70,7 @@ class Article(models.Model):
         ('article_template01.html', 'Story, links Text, rechts Bilder'),
         ('article_template02.html', 'Artikel, links Text, rechts Bilder'),
     ])
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=5000)
     intro_text = models.TextField(max_length=1000000, null=True, blank=True)
     seperated_texts = models.TextField(max_length=1000000, null=True, blank=True)
@@ -79,7 +79,6 @@ class Article(models.Model):
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
     images = models.ManyToManyField(Image, related_name='articles', null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='articles', null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return f"{self.title} - (id: {self.id})"
      

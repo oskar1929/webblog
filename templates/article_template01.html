@@ -87,17 +87,21 @@ TEMPLATE
                     <article>
                         <p>
                             <h4>{{image.title}}</h4>
-                            {{image.date_shot}}<br>   
+                            {{image.date_shot|date:"d.m.Y"}}<br>   
                             <br>
                             {% for link in linkers %}
                                 {% if link.camera.id == image.camera.id %}
                                 <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
+                                {% else %}
+                                {{image.camera.title}}
                                 {% endif %}
                             {% endfor %}
                             <br> 
                             {% for link in linkers %}
                                 {% if link.film.id == image.film.id %}
                                 <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 
+                                {% else %}
+                                {{image.film.title}}
                                 {% endif %}
                             {% endfor %}
                         </p>

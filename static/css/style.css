@@ -211,6 +211,7 @@ table {
 
                     .content-intro {
                         width: var(--width-content);
+                        height: fit-content;
                         text-align: justify;
                         /* background-color: rgb(68, 230, 217); */
                     }

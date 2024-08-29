@@ -98,5 +98,4 @@ class ArticleLinker(models.Model):
     def __str__(self):
         return f"{self.title} - (id: {self.id})" 
     
-
     

@@ -65,9 +65,9 @@
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
                                     {% if article.updated_at > article.created_at %}    
-                                        <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> {{story.title}}<br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                                     {% else %}
-                                        <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
@@ -92,9 +92,9 @@
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
                                     {% if article.updated_at > article.created_at %}    
-                                        <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} | {{story.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                                     {% else %}
-                                        <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} | {{story.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}

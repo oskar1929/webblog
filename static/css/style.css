@@ -54,6 +54,7 @@ li {
 
 .content-section {
     width: 100%;
+    scroll-snap-type: y mandatory;
 }
 
 a:hover {
@@ -80,6 +81,7 @@ a:hover {
 .image-text-bundle {
     width: 100%;
     padding-bottom: 50px;
+    scroll-snap-align: start;
 }
 
 .text-section {
@@ -205,6 +207,7 @@ table {
                         flex-wrap: wrap;
                         justify-content: space-between;
                         overflow-y: auto;
+                        scroll-snap-type: y proximity;
                         padding-right: var(--width-space-scrollbar); /**for scroll bar*/
                         /* background-color: rgb(146, 230, 68); */
                     }
@@ -240,6 +243,7 @@ table {
                         display: flex;
                         flex-wrap: wrap;
                         justify-content: space-between;
+                        scroll-snap-align: start;
                         /* background-color: rgb(227, 123, 184); */
                     }
 

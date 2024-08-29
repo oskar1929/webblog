@@ -11,7 +11,7 @@ var values_dark = [
 ];
 
 var values_bright = [
-    '#F5F5DC',
+    '#f7f7e9',
     '#2F4F4F',
     '#8B0000',
     '#8B4513',

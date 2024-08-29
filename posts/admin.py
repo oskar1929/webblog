@@ -4,7 +4,7 @@ from .models import Article, Image, Tag, Category, Story, Lens, Camera, Film, Sc
 
 class ArticleAdmin(admin.ModelAdmin): # ermöglicht das zuweisen von Bildern zu einem Artikel
     list_display = ('title',)
-    filter_horizontal = ('images', 'tags',)
+    filter_horizontal = ('images',)
 
 class StoryAdmin(admin.ModelAdmin): 
     list_display = ('title',)

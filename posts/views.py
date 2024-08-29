@@ -10,13 +10,14 @@ from django.shortcuts import render, get_object_or_404
 
 
 def index(request):
-    articles = Article.objects.all()
     categories = Category.objects.all()
+    articles = Article.objects.all().order_by('-updated_at')
     stories = Story.objects.all()
+
     return render(request, 'index.html', {
         'articles': articles, 
         'stories': stories, 
-        'categories': categories
+        'categories': categories,
     })
 
 def stories_overview(request,):

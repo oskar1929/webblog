@@ -74,11 +74,10 @@ class Article(models.Model):
     title = models.CharField(max_length=5000)
     intro_text = models.TextField(max_length=1000000, null=True, blank=True)
     seperated_texts = models.TextField(max_length=1000000, null=True, blank=True)
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
-    updated_at = models.DateTimeField(auto_now=True)
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
     images = models.ManyToManyField(Image, related_name='articles', null=True, blank=True)
-    tags = models.ManyToManyField(Tag, related_name='articles', null=True, blank=True)
+    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    updated_at = models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):
         return f"{self.title} - (id: {self.id})"
      

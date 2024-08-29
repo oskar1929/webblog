@@ -55,12 +55,20 @@
                 {% for article in articles %}
                 <li>
                     {% if article.category.title %}
-                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> hochgeladen am:{{article.updated_at|date:"d.m.Y"}}</a>
+                        {% if article.updated_at > article.created_at %}    
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                        {% else %}
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                        {% endif %}
                     {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
-                                    <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                    {% if article.updated_at > article.created_at %}    
+                                        <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                    {% else %}
+                                        <a href="story/{{story.id}}/article/3">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
@@ -74,12 +82,20 @@
                 {% for article in articles %}
                 <li>
                     {% if article.category.title %}
-                        <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | hochgeladen am:{{article.updated_at|date:"d.m.Y"}}</a>
+                        {% if article.updated_at > article.created_at %}    
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                        {% else %}
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                        {% endif %}
                     {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
-                                    <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | hochgeladen am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                    {% if article.updated_at > article.created_at %}    
+                                        <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                    {% else %}
+                                        <a href="story/{{story.id}}/article/3">{{article.title}} | {{story.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}

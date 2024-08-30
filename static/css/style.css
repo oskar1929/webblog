@@ -17,6 +17,25 @@
     scrollbar-width: thin;
 }
 
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #000000dc;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center; /* Horizontale Zentrierung */
+    align-items: center;
+    cursor: pointer;
+}
+
+.image-fullsize {
+    height: 80vh;
+    border: 40px solid white;
+    cursor:none;
+}
+
 body {
     background-color: var(--c-background);
     color: var(--c-font);
@@ -54,7 +73,6 @@ li {
 
 .content-section {
     width: 100%;
-    scroll-snap-type: y mandatory;
 }
 
 a:hover {
@@ -81,7 +99,6 @@ a:hover {
 .image-text-bundle {
     width: 100%;
     padding-bottom: 50px;
-    scroll-snap-align: start;
 }
 
 .text-section {
@@ -122,6 +139,7 @@ a:hover {
             max-width: 100%;
             display: flex;
             margin: 0 auto;
+            cursor: pointer;
         }
 
 a {
@@ -207,7 +225,6 @@ table {
                         flex-wrap: wrap;
                         justify-content: space-between;
                         overflow-y: auto;
-                        scroll-snap-type: y proximity;
                         padding-right: var(--width-space-scrollbar); /**for scroll bar*/
                         /* background-color: rgb(146, 230, 68); */
                     }
@@ -243,7 +260,6 @@ table {
                         display: flex;
                         flex-wrap: wrap;
                         justify-content: space-between;
-                        scroll-snap-align: start;
                         /* background-color: rgb(227, 123, 184); */
                     }
 

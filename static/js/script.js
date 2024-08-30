@@ -75,3 +75,15 @@ function applySavedCSSVariables(element = document.documentElement) {
 document.addEventListener('DOMContentLoaded', () => {
     applySavedCSSVariables();
 });
+
+var overlay = document.getElementById("id-overlay");
+
+function toggleOverlay(event){
+    if (document.getElementById("id-overlay").style.display == 'flex') {
+        document.getElementById("id-overlay").style.display = 'none'; 
+    } else {
+        document.getElementById("id-overlay").style.display = 'flex'; 
+        var image = event.target;
+        document.getElementById("id-image-fullsize").src= image.src; 
+    }
+}

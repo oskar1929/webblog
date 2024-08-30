@@ -27,6 +27,9 @@ TEMPLATE
 </head>
 
 <body>
+    <div id="id-overlay" onclick="toggleOverlay(event)" class="overlay">
+        <image id="id-image-fullsize" class="image-fullsize"></image>
+    </div>
     <div class="wrapper">
 
         <div class="menu-section">
@@ -80,7 +83,7 @@ TEMPLATE
             <div class ="image-text-bundle">
                 
                 <div class="image-section">
-                    <img class="image" src="{{image.image.url}}" alt="">
+                    <img  onclick="toggleOverlay(event)" class="image" src="{{image.image.url}}" alt="">
                 </div>
 
                 <div class ="text-section">

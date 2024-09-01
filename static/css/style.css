@@ -47,15 +47,22 @@ li {
     flex-wrap: wrap;
     margin-left: 15px;
     margin-right: 15px;
-    height: 100vh;
+    height: 95vh;
     margin: 0 auto;
     margin-top: 20px;
+    align-content: start;
 }
 
+/* CONTENT SECTION */
 .content-section {
     width: 100%;
-    height: 100%;
-    overflow: auto;
+    height: auto;
+}
+
+.content-preview-section {
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
 }
 
 a:hover {
@@ -137,11 +144,7 @@ a:hover {
     font-weight: 1000;
 }
 
-.content-preview-section {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-}
+
 
 .content-list-desktop {
     display: none;
@@ -178,18 +181,35 @@ table {
     display: none;
 }
 
-.text-line td {
-    vertical-align: top;
+.camera-specs-table {
+    padding-bottom: 50px;
+}
+
+.camera-specs-table td {
     padding-bottom: 10px;
+    vertical-align: top;
     padding-right: 10px;
 }
 
-.text-line {
-    height: fit-content;
-}
+
 .intro-line {
     text-align: justify;
     padding-bottom: 30px;
+}
+
+.image-band {
+    margin-top: 15px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.image-band img {
+    width: 100%;
+    display: block;
+    height: auto;
+    pointer-events: none;
 }
 
 /*************** DESKTOP */
@@ -340,6 +360,8 @@ table {
                         object-fit: cover;        /* Das Bild wird skaliert, um den Container zu füllen */
                         margin-right: 10px; 
                         cursor: pointer;
+                        pointer-events: auto;
+
                     }
                 }
 

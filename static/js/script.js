@@ -88,3 +88,6 @@ function toggleOverlay(event){
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("id-overlay").style.display = 'none'; 
+});

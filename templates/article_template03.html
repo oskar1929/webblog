@@ -150,7 +150,10 @@
             <div class="image-band">
                 {% for image in allimages%}
                     {% if image.camera == link.camera %}
-                        <img onclick="toggleOverlay(event)" src="{{image.image.url}}"></img>
+                        <img onclick="toggleOverlay(event)" loading="lazy" src="{{image.image.url}}"></img><br>
+                        <a href="#" class="return-link">... zurück nach oben</a><br>
+                        <br>
+                        <br>
                     {% endif %}
                 {%endfor%}
             </div>

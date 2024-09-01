@@ -30,13 +30,14 @@ TEMPLATE
     <div id="id-overlay" onclick="toggleOverlay(event)" class="overlay">
         <image id="id-image-fullsize" class="image-fullsize"></image>
     </div>
+    
     <div class="wrapper">
 
         <div class="menu-section">
             <table>
                 <tr>    
                     <td class="main-nav">
-                        <!-- Sub nav -->
+                        <!-- main nav -->
                         <div>
                             <nav>
                                 <a class="bold-text" href="/">graintopixel.de</a><br>
@@ -66,26 +67,30 @@ TEMPLATE
                 </tr>
             </table>   
         </div>
+
+        <!-- CONTENT -->
         <div class="content-section">
 
+            <!-- CONTENT INTRO-->
             <div class="content-intro">
                 <h1>{{article.title}}</h1>
-                <h1 class="story-title">in {{story.title}}</h1>
-                <br>
+                <h1 class="story-title">in {{story.title}}</h1><br>
                 <br>
                 <p>
                     {{article.intro_text}}
-                </p>   <br><br><br><br>
+                </p>   
             </div>
              
-            <!-- Bild 1 -->
-             {% for image in article.images.all %}
+            <!-- BUNDLE -->
+    {% for image in article.images.all %}
             <div class ="image-text-bundle">
                 
+                <!-- Image -->
                 <div class="image-section">
-                    <img  onclick="toggleOverlay(event)" class="image" src="{{image.image.url}}" alt="">
+                    <img onclick="toggleOverlay(event)" class="image" src="{{image.image.url}}" alt="">
                 </div>
 
+                <!-- Article -->
                 <div class ="text-section">
                     <article>
                         <p>
@@ -94,26 +99,26 @@ TEMPLATE
                             <br>
                             {% for link in linkers %}
                                 {% if link.camera.id == image.camera.id %}
-                                <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
-                                {% else %}
-                                {{image.camera.title}}
+                                    <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
+                                {% elif forloop.counter == linkers.count %}
+                                    {{image.camera.title}}
                                 {% endif %}
                             {% endfor %}
                             <br> 
                             {% for link in linkers %}
-                                {% if link.film.id == image.film.id %}
-                                <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 
-                                {% else %}
-                                {{image.film.title}}
+                                {% if linker.film.id == image.film.id %}
+                                    <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 
+                                {% elif forloop.counter == linkers.count %}
+                                    {{image.film.title}}
                                 {% endif %}
                             {% endfor %}
                         </p>
                     </article>
                     <a href="#" class="return-link">... zurück nach oben</a>
                 </div> 
-
             </div> <!-- image-text-bundle -->  
-            {% endfor %}
+    {% endfor %}
+
         </div> <!-- content-section -->            
     </div> <!-- wrapper -->
 </body>

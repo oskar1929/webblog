@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Image, Tag, Category, Story, Lens, Camera, Film, Scanner, ArticleLinker
+from .models import Article, Image, Tag, Category, Story, Lens, Camera, Film, Scanner, ArticleLinker, ArticleText
 
 
 class ArticleAdmin(admin.ModelAdmin): # ermöglicht das zuweisen von Bildern zu einem Artikel
@@ -9,6 +9,10 @@ class ArticleAdmin(admin.ModelAdmin): # ermöglicht das zuweisen von Bildern zu 
 class StoryAdmin(admin.ModelAdmin): 
     list_display = ('title',)
     filter_horizontal = ('chapters',)
+    
+class CameraAdmin(admin.ModelAdmin): 
+    list_display = ('title',)
+    filter_horizontal = ('similar_cameras', 'related_cameras')
 
 # Register your models here.
 admin.site.register(Article, ArticleAdmin)
@@ -17,10 +21,12 @@ admin.site.register(Tag)
 admin.site.register(Category)
 admin.site.register(Story, StoryAdmin)
 admin.site.register(Lens)
-admin.site.register(Camera)
+admin.site.register(Camera, CameraAdmin)
 admin.site.register(Film)
 admin.site.register(Scanner)
 admin.site.register(ArticleLinker)
+admin.site.register(ArticleText)
+
 
 
 

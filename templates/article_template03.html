@@ -1,0 +1,163 @@
+{%load static%} 
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>{{article.title}}</title>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div id="id-overlay" onclick="toggleOverlay(event)" class="overlay">
+        <image id="id-image-fullsize" class="image-fullsize"></image>
+    </div>
+    
+    <div class="wrapper">
+        
+        <!-- HAUPTNAVIGATION -->
+        <div class="menu-section">
+            <table>
+                <tr>    
+                    <td class="main-nav">
+                        <!-- Main Nav -->
+                        <div>
+                            <nav>
+                                <a class="bold-text" href="/">graintopixel.de</a><br> 
+                                <br>   
+                                
+                                <a href="/category/stories">Stories</a><br>
+                                
+                                {% for category in categories %}
+                                <a href="/category/{{category.title}}">{{category.title}}</a><br>
+                                {% endfor %}
+                                <br>
+
+                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a><br>
+                                <br>
+
+                                <!-- Artikel nav -->
+                                <div class="sub-nav-div">
+                                    <br>
+                                    {% for article in articles %}
+                                        {% if article.category.id == category.id%}
+                                        <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </nav> 
+                        </div>
+                    </td> 
+                </tr>
+            </table>   
+        </div>
+        
+        <!-- CONTENT -->
+        <div class="content-section">
+
+            <!-- Intro -->
+            <div class="intro-line">    
+                <h2>{{article.title}}</h2><br>
+                <p>
+                    {{article.intro_text}}
+                </p>
+            </div>
+
+            {% for image in article.images.all %}
+            <div class="image-line">
+                <img class="image" loading="lazy" src="{{image.image.url}}" alt="">
+            </div>
+            {% endfor %}
+
+            <!-- Table -->
+            {% for link in linker %}
+                <table class="camera-specs-table">
+                    <tr>
+                        <td>Hersteller:</td>
+                        <td>{{link.camera.manufacturer}}</td>
+                    </tr>
+                    <tr>
+                        <td>Produktionszeitraum:</td> 
+                        <td>{{link.camera.first_production}} - {{link.camera.last_production}}</td>
+                    </tr>
+                    <tr>
+                        <td>Sucher:</td>
+                        <td>{{link.camera.view_finder_type}}</td>
+                    </tr>
+                    <tr>
+                        <td>Objektiv:</td>
+                        <td>{{link.camera.lens.title}}, {{link.camera.lens_type}}</td>
+                    </tr>
+                    <tr>
+                        <td>Belichtungsmodus:</td> 
+                        <td>{{link.camera.modes}}</td>
+                    </tr>
+                    <tr>
+                        <td>Belichtungsmessung:</td>  
+                        <td>{{link.camera.lightmeter_type}}</td>
+                    </tr>
+                    <tr>
+                        <td>Belichtungszeiten:</td>  
+                        <td>{{link.camera.min_shutter_speed}}s - {{link.camera.max_shutter_speed}}s {% if link.camera.bulb %}, Bulb-Modus {%else%} ,kein Bulb-Modus {%endif%}  </td>
+                    </tr>
+                    <tr>
+                        <td>Filmformat:</td>  
+                        <td>{{link.camera.film_size}}</td>
+                    </tr>
+                    <tr>
+                        <td>ISO-Einstellung:</td>  
+                        <td>{{link.camera.iso_setting}}, ISO {{link.camera.min_iso}}-{{link.camera.max_iso}}</td>
+                    </tr>
+                    <tr>
+                        <td>Sonstiges:</td>  
+                        <td>{{link.camera.accessories}}</td>
+                    </tr>
+                    <tr>
+                        <td>Abmessungen</td>  
+                        <td>{{link.camera.width}}mm, {{link.camera.height}}mm, {{link.camera.depth}}mm</td>
+                    </tr>
+                    <tr>
+                        <td>Gewicht:</td>  
+                        <td>{{link.camera.weight}}g</td>
+                    </tr>
+                    <tr>
+                        <td>Material:</td>  
+                        <td>{{link.camera.build_material}}</td>
+                    </tr>
+                    <tr>
+                        <td>Farbvarianten:</td>  
+                        <td>{{link.camera.color_variants}}</td>
+                    </tr>
+                    <tr>
+                        <td>Batterien</td>  
+                        <td>{{link.camera.battery}}</td>
+                    </tr>
+                </table>
+            
+            Fotos, die mit der {{link.camera.title}} gemacht wurden:
+            <div class="image-band">
+                {% for image in allimages%}
+                    {% if image.camera == link.camera %}
+                        <img onclick="toggleOverlay(event)" src="{{image.image.url}}"></img>
+                    {% endif %}
+                {%endfor%}
+            </div>
+            
+        {%endfor%}
+        </div> <!-- content-section -->            
+    </div> <!-- wrapper -->
+</body>
+
+</html>

@@ -87,3 +87,4 @@ function toggleOverlay(event){
         document.getElementById("id-image-fullsize").src= image.src; 
     }
 }
+

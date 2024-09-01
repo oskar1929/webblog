@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Article, Story, Category, ArticleLinker
+from .models import Article, Story, Category, ArticleLinker, Image
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -34,12 +34,16 @@ def article(request, pk, cpk):
     category = Category.objects.get(title=cpk)
     categories = Category.objects.all()
     articleLinkers = ArticleLinker.objects.all()
+    allimages = Image.objects.all()
+    linker = ArticleLinker.objects.filter(article=article)   
     return render(request, article.html_template, {
         'article': article,
         'category': category,
         'linkers': articleLinkers,
         'categories': categories, 
         'articles': articles,
+        'linker': linker,
+        'allimages': allimages
     })
 
 def story_article(request, pk, spk):

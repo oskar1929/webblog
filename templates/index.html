@@ -54,13 +54,13 @@
             <ul class="content-list-mobile">
                 {% for article in articles %}
                 <li>
-                    {% if article.category.title %}
+                    {% if article.category.title%}
                         {% if article.updated_at > article.created_at %}    
                             <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                         {% else %}
                             <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                         {% endif %}
-                    {% else %}
+                    {% else%}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}

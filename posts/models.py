@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 
 # Create your models here.
     
@@ -123,7 +123,7 @@ class Tag(models.Model):
     
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='media/', null=True)
+    image_file = models.ImageField(upload_to='media/', null=True)
     title = models.CharField(max_length=5000)
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
     date_shot = models.DateTimeField(default=datetime.now, blank=True)
@@ -137,8 +137,6 @@ class Image(models.Model):
     def __str__(self):
             return f"{self.title} - {self.date_shot.strftime('%d.%m.%Y')} - (id: {self.id})"
     
-class ArticleText(models.Model):
-    text = HTMLField()
 
 class Article(models.Model):
     html_template = models.CharField(max_length=5000,  blank=True, choices=[
@@ -148,15 +146,15 @@ class Article(models.Model):
     ])
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=5000)
-    intro_text = HTMLField(max_length=1000000, null=True, blank=True)
+    intro_text = RichTextField(null=True, blank=True)
     seperated_texts = models.TextField(max_length=1000000, null=True, blank=True)
+    images = models.ManyToManyField(Image, through='ArticleImage', related_name='articles')
     author = models.CharField(max_length=5000, default='Oskar Antretter', null=True)
-    images = models.ManyToManyField(Image, related_name='articles', null=True, blank=True)
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    created_at = models.DateTimeField(default=datetime.now, blank=True) 
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):
         return f"{self.title} - (id: {self.id})"
-     
+    
 class Story(models.Model):
     title = models.CharField(max_length=5000, null=True, blank=True)
     first_chapter = models.ForeignKey(Article, on_delete=models.CASCADE, null=True, blank=True)
@@ -174,4 +172,14 @@ class ArticleLinker(models.Model):
     def __str__(self):
         return f"{self.title} - (id: {self.id})" 
     
-    
+
+class ArticleImage(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.article.title} - {self.image.title} (Order: {self.order})"

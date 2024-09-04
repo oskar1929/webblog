@@ -30,6 +30,7 @@ def stories_overview(request,):
 
 def article(request, pk, cpk):
     article = Article.objects.get(id=pk) # holt den Artikel mit der entsprechenden ID die im Link stand
+    images = article.images.all() #ArticleImage.objects.filter(article=article).order_by('order')
     articles = Article.objects.all()
     category = Category.objects.get(title=cpk)
     categories = Category.objects.all()
@@ -43,7 +44,8 @@ def article(request, pk, cpk):
         'categories': categories, 
         'articles': articles,
         'linker': linker,
-        'allimages': allimages
+        'allimages': allimages,
+        'images': images,
     })
 
 def story_article(request, pk, spk):

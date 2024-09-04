@@ -2,3 +2,7 @@ Objektiv seite
 links von Kameraartikel auf Objektivartikel
 Alle Bilder übersicht mit allen Daten allen Verlinkungen in Artikeln und allen Bildern des sleben Films 
 tinymce fixen
+subscribe/story-subscribe button
+image crop bei kleinen bildern
+bug: sidescroll bei monile artikeln
+Impressum/Datenschutz/Footer

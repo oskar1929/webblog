@@ -15,7 +15,7 @@ TEMPLATE
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" href="media/favicon.jpg" type="image/x-icon">
+    <link rel="icon" href="/media/favicon.jpg" type="image/x-icon">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,39 +80,40 @@ TEMPLATE
                 <h1 class="story-title">in {{story.title}}</h1><br>
                 <br>
                 <p>
-                    {{article.intro_text}}
+                    {{article.intro_text|safe}}
                 </p>   
             </div>
-             
+        
+
             <!-- BUNDLE -->
-    {% for image in article.images.all %}
+            {% for image in article.articleimage_set.all %}
+            
             <div class ="image-text-bundle">
-                
                 <!-- Image -->
                 <div class="image-section">
-                    <img onclick="toggleOverlay(event)" class="image" src="{{image.image.url}}" alt="">
+                    <img onclick="toggleOverlay(event)" class="image" src="{{image.image.image_file.url}}" alt="">
                 </div>
 
                 <!-- Article -->
                 <div class ="text-section">
                     <article>
                         <p>
-                            <h4>{{image.title}}</h4>
-                            {{image.date_shot|date:"d.m.Y"}}<br>   
+                            <h4>{{image.image.title}}</h4>
+                            {{image.image.date_shot|date:"d.m.Y"}}<br>   
                             <br>
                             {% for link in linkers %}
-                                {% if link.camera.id == image.camera.id %}
-                                    <a href="/category/Kameras/article/{{link.article.id}}">{{image.camera.title}}</a> 
+                                {% if link.camera.id == image.image.camera.id %}
+                                    <a href="/category/Kameras/article/{{link.article.id}}">{{image.image.camera.title}}</a> 
                                 {% elif forloop.counter == linkers.count %}
-                                    {{image.camera.title}}
+                                    {{image.image.camera.title}}
                                 {% endif %}
                             {% endfor %}
                             <br> 
                             {% for link in linkers %}
-                                {% if linker.film.id == image.film.id %}
-                                    <a href="/category/Filme/article/{{link.article.id}}">{{image.film.title}}</a> 
+                                {% if linker.film.id == image.image.film.id %}
+                                    <a href="/category/Filme/article/{{link.article.id}}">{{image.image.film.title}}</a> 
                                 {% elif forloop.counter == linkers.count %}
-                                    {{image.film.title}}
+                                    {{image.image.film.title}}
                                 {% endif %}
                             {% endfor %}
                         </p>
@@ -120,7 +121,7 @@ TEMPLATE
                     <a href="#" class="return-link">... zurück nach oben</a>
                 </div> 
             </div> <!-- image-text-bundle -->  
-    {% endfor %}
+            {% endfor %}
 
         </div> <!-- content-section -->            
     </div> <!-- wrapper -->

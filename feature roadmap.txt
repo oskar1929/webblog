@@ -1,8 +1,11 @@
 Objektiv seite
 links von Kameraartikel auf Objektivartikel
-Alle Bilder übersicht mit allen Daten allen Verlinkungen in Artikeln und allen Bildern des sleben Films 
-tinymce fixen
+Alle Bilder mit Tags und Filter- /Sortierungssystem
 subscribe/story-subscribe button
+
+Lokalisierung
+
 image crop bei kleinen bildern
-bug: sidescroll bei monile artikeln
-Impressum/Datenschutz/Footer
+
+Impressum/Datenschutz/Footer    
+    - erst wenn ich auch Daten verarbeite

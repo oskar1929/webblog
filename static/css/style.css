@@ -17,6 +17,14 @@
     scrollbar-width: thin;
 }
 
+.disable_mobile {
+    display: none;
+}
+
+.theme-menu {
+    padding-bottom: 20px;;
+}
+
 body {
     background-color: var(--c-background);
     color: var(--c-font);
@@ -71,20 +79,17 @@ a:hover {
 
 .menu-section {
     width: 100%;
-    padding-bottom: 20px;
     border-bottom: 2px solid var(--c-decoration);
     margin-bottom: 50px;
     height: fit-content;
+    box-sizing: border-box;
 }
 
 .sub-nav-div {
     border-top: 2px solid var(--c-decoration);
-    width: 100%;
+    padding-bottom: 20px;
 }
 
-.main-nav {
-    padding-right: 0px;
-}
 
 .image-text-bundle {
     width: 100%;
@@ -92,9 +97,10 @@ a:hover {
 }
 
 .text-section {
-    width: 94%;
+    width: 100%;
     margin: 0 auto;
     padding-bottom: 40px;
+    hyphens: auto;
 }
 
         h2 {
@@ -124,6 +130,7 @@ a:hover {
     width: 96vw;
     padding-bottom: 15px;
 }
+
         .image {
             max-height: 90vh;
             max-width: 100%;
@@ -171,6 +178,7 @@ a:hover {
     text-align: justify;
     height: fit-content;
     padding-bottom: 50px;
+    hyphens: auto;
 }
 
 table {
@@ -191,10 +199,14 @@ table {
     padding-right: 10px;
 }
 
+.cst-content {
+    hyphens:auto;
+}
 
 .intro-line {
     text-align: justify;
     padding-bottom: 30px;
+    hyphens: auto;
 }
 
 .image-band {
@@ -223,6 +235,10 @@ table {
                     --width-text: 300px;
                     --width-text-image-buffer: 20px;
                     --width-image: 700px;
+                }
+
+                .disable_mobile {
+                    display: flex;
                 }
 
                 .overlay {

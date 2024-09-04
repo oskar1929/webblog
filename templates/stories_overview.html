@@ -28,7 +28,7 @@
                 <tr>
                     <td class="main-nav">
                         <!-- Main nav -->
-                        <div id="id-nav">
+                        <div>
                             <nav>
                                 <a class="bold-text" href="/">graintopixel.de</a> 
                                 <br> 
@@ -40,7 +40,10 @@
                                 <br>
                                 {% endfor %}
                                 <br>
-                                <a onclick="styleBright()">hell</a> | <a onclick="styleDark()">dunkel</a>
+                                <div class="theme-menu disable_mobile">
+                                    <a class="disable_mobile" onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a class="disable_mobile" onclick="styleDark()">dunkel</a>
+                                    <br>    
+                                </div>
                             
                             </nav>  
                         </div>

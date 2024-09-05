@@ -62,9 +62,13 @@ TEMPLATE
                                 <!-- Chapter nav -->
                                 <div class="sub-nav-div">
                                     <br>
+                                    <ul class="sub-nav-list">    
                                     {% for chapter in story.chapters.all %}
-                                    <a href="/story/{{story.id}}/article/{{chapter.id}}">{{chapter.title}}</a><br>
+                                        <li><a class="menu-spacing" href="/story/{{story.id}}/article/{{chapter.id}}">{{chapter.title}}</a></li>
                                     {% endfor %}
+
+                                    </ul>
+                                    
                                 </div>
                             
                             </nav> 
@@ -93,34 +97,44 @@ TEMPLATE
             
             <div class ="image-text-bundle">
                 <!-- Image -->
+                        <br>    
                 <div class="image-section">
                     <img onclick="toggleOverlay(event)" loading="lazy" class="image" src="{{image.image.image_file.url}}" alt="">
                 </div>
 
-                <!-- Article -->
+                <!-- Text -->
                 <div class ="text-section">
-                    <article>
-                        <p>
-                            <h4>{{image.image.title}}</h4>
-                            {{image.image.date_shot|date:"d.m.Y"}}<br>   
-                            <br>
-                            {% for link in linkers %}
-                                {% if link.camera.id == image.image.camera.id %}
-                                    <a href="/category/Kameras/article/{{link.article.id}}">{{image.image.camera.title}}</a> 
-                                {% elif forloop.counter == linkers.count %}
-                                    {{image.image.camera.title}}
-                                {% endif %}
-                            {% endfor %}
-                            <br> 
-                            {% for link in linkers %}
-                                {% if linker.film.id == image.image.film.id %}
-                                    <a href="/category/Filme/article/{{link.article.id}}">{{image.image.film.title}}</a> 
-                                {% elif forloop.counter == linkers.count %}
-                                    {{image.image.film.title}}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </article>
+                    <div class="image-intro">
+                        <h4>{{image.image.title}}</h4>
+                        {{image.image.date_shot|date:"d.m.Y"}}<br>   
+                        <br>    
+                    </div>
+
+                    {% if image.image.notes %}
+                    <p class="image-notes">
+                        {{image.image.notes}}<br> 
+                        <br> 
+                    </p>
+                    {% endif %}
+
+                    <div class="image-info">
+                        {% for link in linkers %}
+                            {% if link.camera.id == image.image.camera.id %}
+                                <a href="/category/Kameras/article/{{link.article.id}}">{{image.image.camera.title}}</a><br>  
+                            {% elif forloop.counter == linkers.count %}
+                                {{image.image.camera.title}}
+                            {% endif %}
+                        {% endfor %}
+
+                        
+                        {% for link in linkers %}
+                            {% if linker.film.id == image.image.film.id %}
+                                <a href="/category/Filme/article/{{link.article.id}}">{{image.image.film.title}}</a> 
+                            {% elif forloop.counter == linkers.count %}
+                                {{image.image.film.title}}
+                            {% endif %}
+                        {% endfor %}
+                    </div>    
                     <a href="#" class="return-link">... zurück nach oben</a>
                 </div> 
             </div> <!-- image-text-bundle -->  

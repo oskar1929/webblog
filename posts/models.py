@@ -143,6 +143,8 @@ class Article(models.Model):
         ('article_template01.html', 'Story, links Text, rechts Bilder'),
         ('article_template02.html', 'Artikel, links Text, rechts Bilder'),
         ('article_template03.html', 'Artikel, Text, Bild, Tabelle'),
+        ('article_template04.html', 'Artikel, Objektiv'),
+        ('article_template05.html', 'Artikel, nur Intro'),
     ])
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=5000)

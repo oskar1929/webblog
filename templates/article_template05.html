@@ -1,4 +1,8 @@
 {%load static%} 
+<!--
+TEMPLATE
+für Lens Modelle
+-->
 
 <!DOCTYPE html>
 <html lang="de">
@@ -9,26 +13,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" href="media/favicon.jpg" type="image/x-icon">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="icon" href="/media/favicon.jpg" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
-    <title>{{category.title}}</title>
+    <title>{{article.title}}</title>
     <script src="{% static 'js/script.js' %}"></script>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
+    <div id="id-overlay" onclick="toggleOverlay(event)" class="overlay">
+        <image id="id-image-fullsize" class="image-fullsize"></image>
+    </div>
+    
     <div class="wrapper">
+        
+        <!-- HAUPTNAVIGATION -->
         <div class="menu-section">
             <table>
-                <tr>
+                <tr>    
                     <td class="main-nav">
-                        <!-- Main nav -->
-                        <div id="id-nav">
+                        <!-- Main Nav -->
+                        <div>
                             <nav>
                                 <a class="bold-text" href="/">graintopixel.de</a> 
                                 <br> 
@@ -46,26 +57,37 @@
                                 <div class="theme-menu disable_mobile">
                                     <a class="disable_mobile" onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a class="disable_mobile" onclick="styleDark()">dunkel</a>
                                     <br>    
+                                    <br>    
                                 </div>
-                            
+
+                                <!-- Artikel nav -->
+                                <div class="sub-nav-div">
+                                    <br>
+                                    {% for article in articles %}
+                                        {% if article.category.id == category.id%}
+                                        <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </nav> 
                         </div>
-                    </td>          
+                    </td> 
                 </tr>
             </table>   
         </div>
+        
+        <!-- CONTENT -->
+        <div class="content-section">
 
-        <div class="content-preview-section">
-            <h2>{{category.title}}</h2>
-            <ul>
-                {% for article in articles %}
-                <li>
-                    <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <br>
-        </div> <!-- content-preview-section -->         
+            <!-- Intro -->
+            <div class="intro-line">    
+                <h2>{{article.title}}</h2><br>
+                <p>
+                    {{article.intro_text|safe}}
+                </p>
+            </div>
+
+        </div> <!-- content-section -->            
     </div> <!-- wrapper -->
 </body>
 

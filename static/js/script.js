@@ -1,3 +1,5 @@
+// Theme Management
+
 var values_dark = [
     '#121212', 
     '#eaeaea', 
@@ -34,9 +36,6 @@ var value_names = [
     '--word-spacing',
 ];
 
-
-
-
 function setCSSVariable(variableName, value, element = document.documentElement) {
     element.style.setProperty(variableName, value);
     localStorage.setItem(variableName, value);
@@ -61,7 +60,6 @@ function styleDark() {
         console.log("EIne css refernez in einer der Arrays wurde vergessen in style.css")
     }
 }
-
 
 function applySavedCSSVariables(element = document.documentElement) {
     for (let i = 0; i < localStorage.length; i++) {

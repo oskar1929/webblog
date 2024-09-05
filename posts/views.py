@@ -36,6 +36,7 @@ def article(request, pk, cpk):
     categories = Category.objects.all()
     articleLinkers = ArticleLinker.objects.all()
     allimages = Image.objects.all()
+    alllinkers = ArticleLinker.objects.all()
     linker = ArticleLinker.objects.filter(article=article)   
     return render(request, article.html_template, {
         'article': article,
@@ -46,6 +47,16 @@ def article(request, pk, cpk):
         'linker': linker,
         'allimages': allimages,
         'images': images,
+        'alllinkers': alllinkers,
+    })
+
+def aboutme(request, pk):
+    categories = Category.objects.all()
+    article = Article.objects.get(id=pk)
+
+    return render(request, article.html_template, {
+        'article': article,
+        'categories': categories, 
     })
 
 def story_article(request, pk, spk):

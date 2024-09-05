@@ -36,9 +36,12 @@
                                 <a href="category/stories">Stories</a>
                                 <br>
                                 {% for category in categories %}
+                                {% if category.id is not 12 %}
                                 <a href="category/{{category.title}}">{{category.title}}</a>
                                 <br>
+                                {%endif%}
                                 {% endfor %}
+                                <a href="/uebermich/18">Über mich</a><br>
                                 <br>
                                 <a onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a onclick="styleDark()">dunkel</a>
                             </nav> 
@@ -81,12 +84,18 @@
             <ul class="content-list-desktop">
                 {% for article in articles %}
                 <li>
-                    {% if article.category.title %}
+                    {% if article.category %}
                         {% if article.updated_at > article.created_at %}    
                             <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                         {% else %}
                             <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                         {% endif %}
+                    {% elif article.category.id is not 12 %} 
+                        {% if article.updated_at > article.created_at %}    
+                            <a href="/uebermich/18">{{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                        {% else %}
+                            <a href="/uebermich/18">{{article.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                    {% endif %}
                     {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}

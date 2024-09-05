@@ -12,6 +12,7 @@ from django.shortcuts import render, get_object_or_404
 def index(request):
     categories = Category.objects.all()
     articles = Article.objects.all().order_by('-updated_at')
+    articles = articles.filter(public = True)
     stories = Story.objects.all()
 
     return render(request, 'index.html', {
@@ -22,6 +23,7 @@ def index(request):
 
 def stories_overview(request,):
     stories = Story.objects.all()
+    stories = stories.filter(public = True)
     categories = Category.objects.all()
     return render(request, 'stories_overview.html', {
         'stories': stories, 
@@ -32,6 +34,7 @@ def article(request, pk, cpk):
     article = Article.objects.get(id=pk) # holt den Artikel mit der entsprechenden ID die im Link stand
     images = article.images.all() #ArticleImage.objects.filter(article=article).order_by('order')
     articles = Article.objects.all()
+    articles = articles.filter(public = True)
     category = Category.objects.get(title=cpk)
     categories = Category.objects.all()
     articleLinkers = ArticleLinker.objects.all()
@@ -75,6 +78,7 @@ def article_overview(request, title):
     category = get_object_or_404(Category, title=title)
     categories = Category.objects.all()
     articles = Article.objects.filter(category=category)
+    articles = articles.filter(public = True)
     return render(request, 'article_overview.html', {
         'category': category, 
         'categories': categories, 

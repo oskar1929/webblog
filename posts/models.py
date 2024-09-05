@@ -137,8 +137,9 @@ class Image(models.Model):
     def __str__(self):
             return f"{self.title} - {self.date_shot.strftime('%d.%m.%Y')} - (id: {self.id})"
     
-
+# - - -  A R T I C L E  - - - #
 class Article(models.Model):
+    public = models.BooleanField(default='False')
     html_template = models.CharField(max_length=5000,  blank=True, choices=[
         ('article_template01.html', 'Story, links Text, rechts Bilder'),
         ('article_template02.html', 'Artikel, links Text, rechts Bilder'),
@@ -156,8 +157,10 @@ class Article(models.Model):
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):
         return f"{self.title} - (id: {self.id})"
-    
+
+# - - -  S T O R Y - - - #
 class Story(models.Model):
+    public = models.BooleanField(default='False')
     title = models.CharField(max_length=5000, null=True, blank=True)
     first_chapter = models.ForeignKey(Article, on_delete=models.CASCADE, null=True, blank=True)
     chapters = models.ManyToManyField(Article, related_name='articles', null=True, blank=True)

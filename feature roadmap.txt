@@ -7,5 +7,10 @@ Lokalisierung
 
 image crop bei kleinen bildern
 
-Impressum/Datenschutz/Footer    
+Datenschutz  
     - erst wenn ich auch Daten verarbeite
+    
+/Footer
+ -Artikeldatum, Autorenname
+
+ In Admin publish checkbox bei artikeln

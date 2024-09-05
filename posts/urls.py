@@ -8,6 +8,5 @@ urlpatterns = [
     path('category/stories', views.stories_overview, name='stories'),
     path('category/<str:title>', views.article_overview, name="article_overview"),
     path('objektive/<str:pk>', views.article, name='lenses'),
-    path('uebermich/<str:pk>', views.aboutme, name='aboutme')
-
+    path('uebermich/<str:pk>', views.aboutme, name='aboutme'),
 ]

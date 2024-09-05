@@ -31,18 +31,24 @@
                         <!-- Sub nav -->
                         <div>
                             <nav>
-                                <a class="bold-text" href="/">graintopixel.de</a><br> 
+                                <a class="bold-text" href="/">graintopixel.de</a> 
+                                <br> 
                                 <br>   
-                                
-                                <a href="/category/stories">Stories</a><br>
-                                
+                                <a href="/category/stories">Stories</a>
+                                <br>
                                 {% for category in categories %}
-                                <a href="/category/{{category.title}}">{{category.title}}</a><br>
+                                {% if category.id is not 12 %}
+                                <a href="/category/{{category.title}}">{{category.title}}</a>
+                                <br>
+                                {%endif%}
                                 {% endfor %}
+                                <a href="/uebermich/18">Über mich</a><br>
+                                <a href="https://paypal.me/oskarantretter1">Buy me a coffe :)</a><br>
                                 <br>
 
                                 <div class="theme-menu disable_mobile">
-                                    <a class="disable_mobile" onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a class="disable_mobile" onclick="styleDark()">dunkel</a><br>
+                                    <a class="disable_mobile" onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a class="disable_mobile" onclick="styleDark()">dunkel</a>
+                                    <br>    
                                     <br>    
                                 </div>
 

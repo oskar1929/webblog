@@ -42,6 +42,7 @@
                                 {%endif%}
                                 {% endfor %}
                                 <a href="/uebermich/18">Über mich</a><br>
+                                <a href="https://paypal.me/oskarantretter1">Buy me a coffe :)</a><br>
                                 <br>
                                 <a onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a onclick="styleDark()">dunkel</a>
                             </nav> 
@@ -57,24 +58,31 @@
             <ul class="content-list-mobile">
                 {% for article in articles %}
                 <li>
-                    {% if article.category.title%}
+                    {% if article.category.id is not 12 and article.category%}
                         {% if article.updated_at > article.created_at %}    
-                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> <span class="italic">{{article.category.title}}</span> <br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                         {% else %}
-                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> {{article.category.title}} <br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} <br> <span class="italic">{{article.category.title}}</span> <br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                         {% endif %}
-                    {% else%}
+                    {% elif article.category.id is not 12 %} 
+                        {% if article.updated_at > article.created_at %}    
+                            <a href="/uebermich/18">{{article.title}} <br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                        {% else %}
+                            <a href="/uebermich/18">{{article.title}} <br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                        {% endif %}
+                    {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
                                     {% if article.updated_at > article.created_at %}    
-                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> {{story.title}}<br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
-                                    {% else %}
-                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> {{story.title}}<br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                        <a href="/story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> <span class="italic">{{story.title}}</span><br> aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                    {% else %}   
+                                        <a href="/story/{{story.id}}/article/{{article.id}}">{{article.title}} <br> <span class="italic">{{story.title}}</span><br> hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
+
                     {% endif %}
                 </li>
                 {% endfor %}
@@ -84,26 +92,26 @@
             <ul class="content-list-desktop">
                 {% for article in articles %}
                 <li>
-                    {% if article.category %}
+                    {% if article.category.id is not 12 and article.category%}
                         {% if article.updated_at > article.created_at %}    
-                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | <span class="italic">{{article.category.title}}</span> - aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                         {% else %}
-                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | {{article.category.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                            <a href="category/{{article.category.title}}/article/{{article.id}}">{{article.title}} | <span class="italic">{{article.category.title}}</span> - hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                         {% endif %}
                     {% elif article.category.id is not 12 %} 
                         {% if article.updated_at > article.created_at %}    
-                            <a href="/uebermich/18">{{article.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                            <a href="/uebermich/18">{{article.title}} - aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                         {% else %}
-                            <a href="/uebermich/18">{{article.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
-                    {% endif %}
+                            <a href="/uebermich/18">{{article.title}} - hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                        {% endif %}
                     {% else %}
                         {% for story in stories %}
                             {% for chapter in story.chapters.all %}
                                 {% if chapter.title and chapter.id == article.id %}
                                     {% if article.updated_at > article.created_at %}    
-                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} | {{story.title}} | aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
+                                        <a href="/story/{{story.id}}/article/{{article.id}}">{{article.title}} | <span class="italic">{{story.title}}</span> - aktualisiert am: {{article.updated_at|date:"d.m.Y"}}</a>
                                     {% else %}
-                                        <a href="story/{{story.id}}/article/{{article.id}}">{{article.title}} | {{story.title}} | hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
+                                        <a href="/story/{{story.id}}/article/{{article.id}}">{{article.title}} | <span class="italic">{{story.title}}</span> - hochgeladen am: {{article.created_at|date:"d.m.Y"}}</a>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}

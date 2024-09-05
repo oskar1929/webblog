@@ -253,6 +253,10 @@ table {
     scroll-snap-align: start;
 }
 
+.italic {
+    font-style: italic;
+}
+
 /*************** DESKTOP */
 
                 @media only screen and (min-width: 1600px) {

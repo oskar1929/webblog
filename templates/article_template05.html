@@ -1,7 +1,7 @@
 {%load static%} 
 <!--
 TEMPLATE
-für Lens Modelle
+für About Me
 -->
 
 <!DOCTYPE html>
@@ -60,16 +60,6 @@ für Lens Modelle
                                     <a class="disable_mobile" onclick="styleBright()">hell</a>&nbsp;|&nbsp;<a class="disable_mobile" onclick="styleDark()">dunkel</a>
                                     <br>    
                                     <br>    
-                                </div>
-
-                                <!-- Artikel nav -->
-                                <div class="sub-nav-div">
-                                    <br>
-                                    {% for article in articles %}
-                                        {% if article.category.id == category.id%}
-                                        <a href="/category/{{category.title}}/article/{{article.id}}">{{article.title}}</a><br>
-                                        {% endif %}
-                                    {% endfor %}
                                 </div>
                             </nav> 
                         </div>

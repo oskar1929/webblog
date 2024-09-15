@@ -1,6 +1,8 @@
 Objektiv seite
 links von Kameraartikel auf Objektivartikel
-Alle Bilder mit Tags und Filter- /Sortierungssystem
+
+Alle Bilder mit Tags und Filter- /Sortierungssystem und alle Details und Verlinkungen auf Artikel seite
+
 subscribe/story-subscribe button
 
 Lokalisierung
@@ -10,7 +12,5 @@ image crop bei kleinen bildern
 Datenschutz  
     - erst wenn ich auch Daten verarbeite
     
-/Footer
- -Artikeldatum, Autorenname
-
- In Admin publish checkbox bei artikeln
+Footer
+ -Artikeldatum, Autorenname, nächste Seite in Story
